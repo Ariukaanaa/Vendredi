@@ -5,6 +5,9 @@ on:
     branches:
       - dev
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   create-pr:
     runs-on: ubuntu-latest
@@ -14,13 +17,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Create PR (dev → production)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Аль хэдийн PR байвал давхар үүсгэхгүй
           EXISTING=$(gh pr list \
             --base production \
             --head dev \
@@ -43,7 +45,5 @@ jobs:
           ### Хийх зүйл
           - [ ] Code review
           - [ ] QA шалгалт
-          - [ ] Merge зөвшөөрөх
-
-          > Энэ PR-ийг \`dev\` branch-д push хийснээр GitHub Actions автоматаар үүсгэв."
+          - [ ] Merge зөвшөөрөх"
           fi
