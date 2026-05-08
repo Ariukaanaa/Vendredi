@@ -1,0 +1,49 @@
+name: Auto PR — dev → production
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create PR (dev → production)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Аль хэдийн PR байвал давхар үүсгэхгүй
+          EXISTING=$(gh pr list \
+            --base production \
+            --head dev \
+            --state open \
+            --json number \
+            --jq '.[0].number')
+
+          if [ -n "$EXISTING" ]; then
+            echo "PR #$EXISTING аль хэдийн нээлттэй байна, алгасаж байна."
+          else
+            gh pr create \
+              --base production \
+              --head dev \
+              --title "🚀 Deploy: dev → production ($(date '+%Y-%m-%d %H:%M'))" \
+              --body "## Автоматаар үүсгэсэн PR
+
+          **Гарал:** \`dev\`
+          **Очих:** \`production\`
+
+          ### Хийх зүйл
+          - [ ] Code review
+          - [ ] QA шалгалт
+          - [ ] Merge зөвшөөрөх
+
+          > Энэ PR-ийг \`dev\` branch-д push хийснээр GitHub Actions автоматаар үүсгэв."
+          fi
