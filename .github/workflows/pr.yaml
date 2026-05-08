@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
 
-     - name: Create PR (dev → production)
+      - name: Create PR (dev → production)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
