@@ -1,11 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendredi</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    nav .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: #fff; }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      gap: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #888;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      padding: 0.85rem 2.2rem;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 3rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #161616;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 2rem;
+      width: 220px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .card:hover { border-color: #444; transform: translateY(-4px); }
+
+    .card .icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.85rem; color: #666; line-height: 1.6; }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: #333;
+      border-top: 1px solid #1a1a1a;
+    }
+  </style>
 </head>
 <body>
-    
+
+  <nav>
+    <div class="logo">VENDREDI</div>
+    <ul>
+      <li><a href="#">Нүүр</a></li>
+      <li><a href="#">Тухай</a></li>
+      <li><a href="#">Холбоо барих</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h1>Vendredi<br>Project</h1>
+    <p>Java ба Docker ашиглан бүтээсэн цэвэр, хурдан вэб апп.</p>
+    <a href="#" class="btn">Эхлэх →</a>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <div class="icon">⚡</div>
+      <h3>Хурдан</h3>
+      <p>Built-in Java HTTP server ашигласан хөнгөн архитектур.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🐳</div>
+      <h3>Docker</h3>
+      <p>Multi-stage build ашиглан жижиг, цэвэр image үүсгэнэ.</p>
+    </div>
+    <div class="card">
+      <div class="icon">☕</div>
+      <h3>Java 17</h3>
+      <p>Орчин үеийн Java LTS version дээр ажиллана.</p>
+    </div>
+  </section>
+
+  <footer>© 2026 Vendredi Project</footer>
+
 </body>
 </html>
