@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
 
-      - name: Create PR (dev → production)
+     - name: Create PR (dev → production)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -33,17 +33,19 @@ jobs:
           if [ -n "$EXISTING" ]; then
             echo "PR #$EXISTING аль хэдийн нээлттэй байна, алгасаж байна."
           else
-            gh pr create \
-              --base production \
-              --head dev \
-              --title "🚀 Deploy: dev → production ($(date '+%Y-%m-%d %H:%M'))" \
-              --body "## Автоматаар үүсгэсэн PR
-
-          **Гарал:** \`dev\`
-          **Очих:** \`production\`
-
+            BODY=$(cat <<'EOF'
+          ## Автоматаар үүсгэсэн PR
+          **Гарал:** `dev`
+          **Очих:** `production`
           ### Хийх зүйл
           - [ ] Code review
           - [ ] QA шалгалт
-          - [ ] Merge зөвшөөрөх"
+          - [ ] Merge зөвшөөрөх
+          EOF
+            )
+            gh pr create \
+              --base production \
+              --head dev \
+              --title "Deploy: dev to production ($(date '+%Y-%m-%d %H:%M'))" \
+              --body "$BODY"
           fi
